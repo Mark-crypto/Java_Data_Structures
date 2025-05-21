@@ -5,8 +5,12 @@ public class LeetCodeArrayQuestions {
     public static void main(String[] args) {
         int []arr = {1,1,0,0,1,1,1};
         int []numbers = {2,3,4,5,6,7,8};
+        int[] list = {12,234,56,7856,903,221,42, -12};
         System.out.println(findMaxConsecutiveOnes(arr));
         System.out.println(Arrays.toString(twoSum(numbers, 15)));
+        System.out.println(EvenDigits(list));
+
+
     }
     static int findMaxConsecutiveOnes(int[] nums) {
         int counter = 0;
@@ -51,5 +55,30 @@ public class LeetCodeArrayQuestions {
             }
             return arr;
         }
+        //Find the number of elements that contain an even number of digits
+    static int EvenDigits(int[]arr){
+        int counter = 0;
 
+        for (int i : arr) {
+           if(even(i)){
+               counter++;
+           }
+        }
+        return counter;
+    }
+
+    static boolean even(int i) {
+        if(i < 0){
+            i = i * -1;
+        }
+        if(i == 0){
+           i = 1;
+        }
+        int count = 0;
+        while (i > 0){
+            count++;
+            i = i /10;
+        }
+        return count % 2 == 0;
+    }
 }
