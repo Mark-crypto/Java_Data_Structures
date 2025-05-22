@@ -6,10 +6,15 @@ public class LeetCodeArrayQuestions {
         int []arr = {1,1,0,0,1,1,1};
         int []numbers = {2,3,4,5,6,7,8};
         int[] list = {12,234,56,7856,903,221,42, -12};
+        int [][]accounts = {
+                {1,2,3},
+                {4,5,6,},
+                {9,10}
+        };
         System.out.println(findMaxConsecutiveOnes(arr));
         System.out.println(Arrays.toString(twoSum(numbers, 15)));
         System.out.println(EvenDigits(list));
-
+        System.out.println(maxWealth(accounts));
 
     }
     static int findMaxConsecutiveOnes(int[] nums) {
@@ -80,5 +85,21 @@ public class LeetCodeArrayQuestions {
             i = i /10;
         }
         return count % 2 == 0;
+    }
+    static int findNumberOfDigits(int num){
+        return (int)(Math.log10(num)) + 1;
+    }
+    //Richest customer wealth
+    static int maxWealth(int[][]arr){
+        int wealth = 0;
+        int sum = 0;
+        for (int row = 0; row < arr.length; row++) {
+            for (int col = 0; col < arr[row].length; col++) {
+                sum = sum + arr[row][col];
+            }
+            wealth = Math.max(wealth, sum);
+            sum = 0;
+        }
+        return wealth;
     }
 }
