@@ -1,7 +1,8 @@
-public class RotatedArray {
+public class RotatedDuplicates {
     public static void main(String[] args) {
-        int[] nums = {4,5,6,7,0,1,2,2};
+        int[] nums = {7,2,2,3,4};
         System.out.println(rotatedSearch(nums,3));
+
     }
     static int rotatedSearch(int[]arr, int target){
         int pivot = findPivot(arr);
@@ -14,7 +15,7 @@ public class RotatedArray {
         if(target >= arr[0]){
             return binarySearch(arr, target, 0, pivot - 1);
         }
-            return binarySearch(arr, target, pivot + 1, arr.length -1);
+        return binarySearch(arr, target, pivot + 1, arr.length -1);
 
     }
     static int binarySearch(int[]arr, int target, int start, int end){
@@ -48,10 +49,19 @@ public class RotatedArray {
             if(mid > start && arr[mid] < arr[mid - 1]){
                 return mid -1;
             }
-            if(arr[start] >= arr[mid]){
-                end = mid -1;
-            }else{
+            if(arr[mid] == arr[start] && arr[mid] == arr[end]){
+                if(arr[start] > arr[start + 1]){
+                    return start;
+                }
+                start++;
+                if(arr[end] < arr[end - 1]){
+                    return end - 1;
+                }
+                end--;
+            } else if (arr[start] < arr[mid] || (arr[start] == arr[mid]) && arr[mid] > arr[end]) {
                 start = mid + 1;
+            }else {
+                end = mid - 1;
             }
         }
         return  -1;
